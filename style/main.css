@@ -1,0 +1,56 @@
+html, body {
+  background-color: #F7F7F7;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  background-color: #fff;
+  margin: 0;
+  padding: 30px 10px;
+}
+
+#range-flow {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  line-height: 40px;
+
+  background-color: #fff;
+  border-top: 1px solid #393939;
+
+  padding-top: 3px;
+  white-space: nowrap;
+}
+
+.bar {
+  width: 4px;
+  background-color: #393939;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-left: 1px;
+  min-height: 2px
+}
+
+#range-capture {
+  height: 50px;
+  border-bottom: 1px solid #393939;
+  background-color: white;
+  position: relative;
+}
+
+#range-capture .btn-start {
+  right: 0;
+  bottom: 0;
+  top: 0;
+  position: absolute;
+  background-color: #4A1A2C;
+  color: #fff;
+  line-height: 50px;
+  padding: 0 20px;
+  cursor: pointer;
+  font-family: Arial, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
