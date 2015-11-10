@@ -12,33 +12,25 @@
           <div class="line1">Pattern 1</div>
           <div class="line2">0.12345678901234</div>
       </div>
+      <div class="range-capture">
+        <div class="input-group">
+          <input value="1000" type="number" id="capture-numbers"> numbers
+        </div>
 
-      <div class="input-group">
-        <input value="1000" type="number" id="numbers"> numbers
+        <div class="btn-line">
+          <div class="btn btn-capture">Capture</div>
+        </div>
       </div>
 
-      <div class="btn-line">
-        <div class="btn">Capture</div>
+      <div class="range active" data-count="170">
       </div>
-
-      <div class="range active">
-      </div>
-    </div>
-
-    <h1>Range watcher</h1>
-    <div id="range-capture">
-      <div class="content"></div>
-      <div class="btn-start">start</div>
-    </div>
-
-    <div id="range-flow">
-
     </div>
 
     <script type="text/javascript">
       window.$ = window.jQuery = require(__dirname+'/node_modules/jquery/dist/jquery.min.js');
     </script>
 
+    <script src="client/range.js"></script>
     <script src="client/rangeFlow.js"></script>
     <script src="client/rangeCapture.js"></script>
   </body>

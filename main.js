@@ -1,5 +1,6 @@
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
+var ipc = require('ipc');
 
 // Report crashes to our server.
 require('crash-reporter').start();
@@ -17,6 +18,8 @@ app.on('window-all-closed', function() {
   }
 });
 
+var neededNumbers = 0;
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
@@ -25,6 +28,18 @@ app.on('ready', function() {
       'web-preferences': {
         'web-security': false, 'allow-displaying-insecure-content': true
       }
+  });
+
+  ipc.on('device', function(event, arg) {
+    var command = arg.split(":");
+
+    if(command[0] == "start") {
+      neededNumbers = parseInt(command[1]);
+    }
+
+    if(command[0] == "stop") {
+      neededNumbers = 0;
+    }
   });
 
   // and load the index.html of the app.
@@ -42,8 +57,11 @@ app.on('ready', function() {
 
     if(!set) {
       setInterval(function() {
-        mainWindow.webContents.executeJavaScript("addRangeFlow(" + Math.random() + ")");
-      }, 1000);
+        if (neededNumbers > 0) {
+          mainWindow.webContents.executeJavaScript("addRangeFlow(" + Math.random() + ")");
+          neededNumbers--;
+        }
+      }, 10);
       set = true;
     }
   });

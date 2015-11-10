@@ -1,12 +1,16 @@
+var ipc = require('ipc');
+
 (function( $ ) {
   $.fn.rangeCapture = function() {
       $(this).each(function() {
-        $(this).find(".btn-start").on("click", function() {
-          alert("start");
+        var isCapture = false;
+        $(this).find(".btn-capture").on("click", function() {
+          ipc.send('device', isCapture ? 'stop' : 'start:' + $("#capture-numbers").val());
+          isCapture = !isCapture;
         });
 
         $(this).on("number", function(event, number) {
-          console.log(number);
+          //console.log(number);
         });
       });
       return this;
@@ -14,5 +18,5 @@
 }( jQuery ));
 
 $(function() {
-  $("#range-capture").rangeCapture();
+  $(".range-capture").rangeCapture();
 });
