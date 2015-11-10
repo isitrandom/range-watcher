@@ -1,27 +1,38 @@
+/**
+  #484743
+  #21A5BD
+*/
+@font-face {
+    font-family: screen;
+    src: url(fonts/screen.ttf);
+}
+
 html, body {
-  background-color: #F7F7F7;
+  background-color: #F9F8F3;
   padding: 0;
   margin: 0;
 }
 
 h1 {
-  background-color: #fff;
   margin: 0;
   padding: 30px 10px;
 }
 
-#range-flow {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  line-height: 40px;
+input:focus, textarea:focus {
+  box-shadow: none;
+  outline: none;
+}
 
-  background-color: #fff;
-  border-top: 1px solid #393939;
+.btn {
+  border-radius: 3px;
+}
 
-  padding-top: 3px;
+.screen {
+  font-family: screen;
+  line-height: 1.2em;
+}
+
+.range {
   white-space: nowrap;
 }
 
@@ -29,28 +40,81 @@ h1 {
   width: 4px;
   background-color: #393939;
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
   margin-left: 1px;
-  min-height: 2px
+  min-height: 2px;
 }
 
-#range-capture {
-  height: 50px;
-  border-bottom: 1px solid #393939;
-  background-color: white;
-  position: relative;
-}
-
-#range-capture .btn-start {
-  right: 0;
-  bottom: 0;
+#main-menu {
   top: 0;
+  left: 0;
+  bottom: 0;
+  width: 70px;
+  position: fixed;
+  background-color: #484743;
+  border-right: 1px solid rgba(255,255,255, 0.6);
+}
+
+#side-bar {
+  top: 0;
+  left: 71px;
+  bottom: 0;
+  width: 418px;
+  position: fixed;
+  background-color: #21A5BD;
+  overflow: hidden;
+}
+
+#side-bar .range {
   position: absolute;
-  background-color: #4A1A2C;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  line-height: 100px;
+  padding: 20px 0;
+}
+
+#side-bar .range .bar {
+  background-color: #fff;
+}
+
+#side-bar .screen {
+  font-size: 36px;
+  padding: 20px 10px 10px 10px;
+  border-bottom: 1px solid rgba(255,255,255, 0.6);
   color: #fff;
-  line-height: 50px;
-  padding: 0 20px;
+}
+
+.input-group {
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid rgba(255,255,255, 0.6);
+}
+
+#side-bar .input-group, #side-bar .btn-line {
+  color: #fff;
+  margin-top: 50px;
+}
+
+#side-bar .input-group input {
+  color: #fff;
+  background-color: transparent;
+  border: 0;
+  font-size: 30px;
+  text-align: right;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#side-bar .btn {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fff;
   cursor: pointer;
-  font-family: Arial, Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  display: inline-block;
+  padding: 10px;
+  color: #21A5BD;
+}
+
+#side-bar .btn-line {
+  text-align: right;
+  margin-right: 40px;
 }

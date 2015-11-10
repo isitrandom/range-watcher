@@ -21,7 +21,11 @@ app.on('window-all-closed', function() {
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({width: 800, height: 600,
+      'web-preferences': {
+        'web-security': false, 'allow-displaying-insecure-content': true
+      }
+  });
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
@@ -29,16 +33,19 @@ app.on('ready', function() {
   // Open the DevTools.
   mainWindow.openDevTools();
 
+  var set = false;
   //add some random numbers
   mainWindow.webContents.on('did-finish-load', function() {
-    for(var i=0; i<100; i++) {
+    /*for(var i=0; i<100; i++) {
       mainWindow.webContents.executeJavaScript("addRangeFlow(" + Math.random() + ")");
-    }
+    }*/
 
-    /*
-    setInterval(function() {
-      mainWindow.webContents.executeJavaScript("addRangeFlow(" + Math.random() + ")");
-    }, 300);*/
+    if(!set) {
+      setInterval(function() {
+        mainWindow.webContents.executeJavaScript("addRangeFlow(" + Math.random() + ")");
+      }, 1000);
+      set = true;
+    }
   });
 
 
