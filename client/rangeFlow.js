@@ -10,7 +10,7 @@ function addRangeFlow(number) {
 
   var percent = number * 100;
 
-  $(".range").trigger('number', [number]);
+  $(".range.active").trigger('number', [number]);
   $(".screen .line2").html(number);
 
   clearTimeout(rangeFlowTimer);

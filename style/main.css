@@ -118,3 +118,7 @@ input:focus, textarea:focus {
   text-align: right;
   margin-right: 40px;
 }
+
+#range-list .range {
+  height: 200px;
+}
