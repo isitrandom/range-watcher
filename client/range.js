@@ -36,16 +36,20 @@
 
   $.fn.range = function() {
       $(this).each(function() {
+        var shouldUpdateProgress = true;
+        var element = $(this);
         var lastDraw = new Date();
         var list = [];
 
-        for(var i = 0; i<$(this).attr("data-count"); i++) {
-          list.push(0);
-        }
-
+        var totalNumers = $(this).attr("data-count");
+        var readNumers = 0;
         var width;
         var height;
         var ratio = window.devicePixelRatio;
+
+        for(var i = 0; i<totalNumers; i++) {
+          list.push(0);
+        }
 
         $(this).html('<canvas></canvas>');
 
@@ -55,13 +59,27 @@
         $(this).on("number", function(event, number) {
           list.push(parseFloat(number));
           list.shift();
-
+          readNumers++;
           draw();
+
+          if(shouldUpdateProgress) {
+            updateProgress();
+          }
         });
 
         $(window).on("resize", function() {
           draw();
         });
+
+        function updateProgress() {
+          var percent = (readNumers/totalNumers)*100;
+
+          element.parent().find(".progress").css("width", percent + "%");
+          if(percent >= 100) {
+            shouldUpdateProgress = false;
+            element.parent().addClass("read-done");
+          }
+        }
 
         function draw() {
           var now = new Date();

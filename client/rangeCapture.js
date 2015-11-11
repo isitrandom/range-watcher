@@ -9,8 +9,8 @@ var ipc = require('ipc');
         function createItem() {
           var item = '<div class="item">';
           item += '<input class="name" value="Range ' + ($("#range-list .item").length + 1) + '"/>';
-          item += '<div data-count="' + $("#capture-numbers").val() + '" class="range">';
-          item += '</div>';
+          item += '<div data-count="' + $("#capture-numbers").val() + '" class="range"></div>';
+          item += '<div class="progress"></div>';
 
           item += '</div>';
 

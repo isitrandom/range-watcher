@@ -133,6 +133,7 @@ input:focus, textarea:focus {
 #range-list .item {
   margin-bottom: 20px;
   border-bottom: 1px solid #E8E7E3;
+  position: relative;
 }
 
 #range-list .item .name {
@@ -144,4 +145,18 @@ input:focus, textarea:focus {
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 10px;
   width: 100%;
+}
+
+#range-list .item .progress {
+  height: 1px;
+  left: 0;
+  bottom: -1px;
+  width: 50%;
+  background-color: #CA4350;
+  position: absolute;
+}
+
+#range-list .read-done .progress {
+  opacity: 0;
+  transition: opacity 1s ease-in;
 }
