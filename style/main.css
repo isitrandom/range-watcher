@@ -144,7 +144,7 @@ input:focus, textarea:focus {
   text-align: left;
   font-family: Arial, Helvetica, sans-serif;
   margin-bottom: 10px;
-  width: 100%;
+  width: 50%;
 }
 
 #range-list .item .progress {
@@ -159,4 +159,16 @@ input:focus, textarea:focus {
 #range-list .read-done .progress {
   opacity: 0;
   transition: opacity 1s ease-in;
+}
+
+#range-list .item .toolbar {
+  background-color: #red;
+  height: 20px;
+}
+
+#range-list .item .toolbar .btn {
+  color: #484743;
+  display: inline-block;
+  float: right;
+  line-height: 22px;
 }
