@@ -3,7 +3,7 @@
   function drawRange(list, ctx) {
     var width = ctx.canvas.width;
     var height = ctx.canvas.height;
-    ctx.clearRect(0, 0, 1000, 1000);
+    ctx.clearRect(0, 0, width, height);
 
     var ended = false;
     var index = list.length - 1;
@@ -43,36 +43,54 @@
           list.push(0);
         }
 
-        var width = $(this).width();
-        var height = $(this).height();
+        var width;
+        var height;
         var ratio = window.devicePixelRatio;
 
-        $(this).html('<canvas width="' + (width*ratio) + '" height="' + (height*ratio) + '" style="width: ' + width + 'px; height:' + height + 'px" ></canvas>');
+        $(this).html('<canvas></canvas>');
 
         var canvas = $(this).find("canvas");
         var ctx = canvas[0].getContext("2d");
-        ctx.strokeStyle = '#ffffff';
-        ctx.lineWidth = ratio;
-
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(200, 200);
-        ctx.stroke();
-        ctx.closePath();
 
         $(this).on("number", function(event, number) {
           list.push(parseFloat(number));
           list.shift();
 
+          draw();
+        });
+
+        $(window).on("resize", function() {
+          draw();
+        });
+
+        function draw() {
           var now = new Date();
 
           if(now - lastDraw > 140) {
+            setCanvasSize();
             drawRange(list, ctx);
             lastDraw = now;
           }
-        });
-      });
+        }
 
+        function setCanvasSize() {
+          var parent = canvas.parent();
+
+          if(width != parent.width() || height != parent.height()) {
+            width = parent.width();
+            height = parent.height();
+
+            canvas.attr({
+               width: (width*ratio),
+               height: (height*ratio),
+               style: "width: " + width + "px; height:" + height + "px"
+            });
+
+            ctx.strokeStyle = parent.css("color");
+            ctx.lineWidth = ratio;
+          }
+        }
+      });
       return this;
   };
 }( jQuery ));

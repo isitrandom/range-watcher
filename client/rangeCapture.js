@@ -6,20 +6,33 @@ var ipc = require('ipc');
         var lastRange;
         var isCapture = false;
 
+        function createItem() {
+          var item = '<div class="item">';
+          item += '<input class="name" value="Range ' + ($("#range-list .item").length + 1) + '"/>';
+          item += '<div data-count="' + $("#capture-numbers").val() + '" class="range">';
+          item += '</div>';
+
+          item += '</div>';
+
+          return item;
+        }
+
         $(this).find(".btn-capture").on("click", function() {
           ipc.send('device', isCapture ? 'stop' : 'start:' + $("#capture-numbers").val());
           isCapture = !isCapture;
 
           if(isCapture) {
-            $("#range-list").prepend('<div data-count="' + $("#capture-numbers").val() + '" class="range"></div>');
-            lastRange = $("#range-list .range:first").range();
+            var item = createItem();
+
+            $("#range-list").append(item);
+            lastRange = $("#range-list .range:last");
+            lastRange.range();
           } else {
             lastRange = null;
           }
         });
 
         $(this).on("number", function(event, number) {
-          //console.log(number);
           if(lastRange) {
             lastRange.trigger('number', [number]);
           }

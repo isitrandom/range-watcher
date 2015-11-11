@@ -1,6 +1,9 @@
 /**
   #484743
   #21A5BD
+  #43CABD
+  #E8E7E3
+  #454544
 */
 @font-face {
     font-family: screen;
@@ -34,15 +37,7 @@ input:focus, textarea:focus {
 
 .range {
   white-space: nowrap;
-}
-
-.bar {
-  width: 4px;
-  background-color: #393939;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 1px;
-  min-height: 2px;
+  color: #fff;
 }
 
 #main-menu {
@@ -119,6 +114,34 @@ input:focus, textarea:focus {
   margin-right: 40px;
 }
 
+#range-list {
+  position: fixed;
+  top: 0;
+  left: 490px;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  padding: 20px;
+}
+
 #range-list .range {
-  height: 200px;
+  height: 50px;
+  color: #43CABD;
+  padding-bottom: 10px;
+}
+
+#range-list .item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #E8E7E3;
+}
+
+#range-list .item .name {
+  color: #454544;
+  background-color: transparent;
+  border: 0;
+  font-size: 16px;
+  text-align: left;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
+  width: 100%;
 }

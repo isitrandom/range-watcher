@@ -3,7 +3,7 @@ var rangeFlowTimer;
 function addRangeFlow(number) {
 
   if(number) {
-    $("#range-capture").trigger("number", [number]);
+    $(".range-capture").trigger("number", [number]);
   } else {
     number = 0;
   }
