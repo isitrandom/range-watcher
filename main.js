@@ -61,7 +61,7 @@ app.on('ready', function() {
           mainWindow.webContents.executeJavaScript("addRangeFlow(" + Math.random() + ")");
           neededNumbers--;
         }
-      }, 10);
+      }, 5);
       set = true;
     }
   });

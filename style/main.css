@@ -6,8 +6,13 @@
   #454544
 */
 @font-face {
-    font-family: screen;
-    src: url(fonts/screen.ttf);
+  font-family: screen;
+  src: url(fonts/screen.ttf);
+}
+
+@font-face {
+  font-family: MainFont;
+  src: url(fonts/default.ttf);
 }
 
 html, body {
@@ -27,7 +32,9 @@ input:focus, textarea:focus {
 }
 
 .btn {
-  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 15px;
 }
 
 .screen {
@@ -40,38 +47,70 @@ input:focus, textarea:focus {
   color: #fff;
 }
 
+.input-group, .btn {
+  font-family: MainFont, sans-serif;
+}
+
 #main-menu {
+  pointer-events: none;
   top: 0;
   left: 0;
-  bottom: 0;
-  width: 70px;
+  right: 20px;
+  height: 100px;
   position: fixed;
-  background-color: #484743;
-  border-right: 1px solid rgba(255,255,255, 0.6);
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(249,249,243,1) 41%, rgba(249,249,243,0.96) 46%, rgba(249,249,243,0.78) 71%, rgba(249,249,243,0) 100%)
+}
+
+#main-menu .btn {
+  color: #7A869F;
+  text-align: center;
+  line-height: 70px;
+  height: 70px;
+  margin-left: 50px;
+  display: inline-block;
+}
+
+#main-menu .btn i {
+  font-size: 30px;
+  width: 70px;
+  line-height: 70px;
+}
+
+#main-menu .btn.active {
+  color: #43CABD;
+}
+
+#main-menu .btn.btn-settings {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 #side-bar {
-  top: 0;
-  left: 71px;
   bottom: 0;
-  width: 418px;
+  left: 0;
+  right: 0;
+  height: 70px;
   position: fixed;
-  background-color: #21A5BD;
+  background-color: #1A1C25;
   overflow: hidden;
 }
 
 #side-bar .range {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 0;
   right: 0;
-  height: 100px;
+  height: 50px;
+  width: 400px;
   line-height: 100px;
-  padding: 20px 0;
+  padding: 10px 0;
+  color: #AC70FA;
+  background-color: #222632;
 }
 
-#side-bar .range .bar {
-  background-color: #fff;
+#side-bar .range canvas {
+  vertical-align: top;
 }
 
 #side-bar .screen {
@@ -81,14 +120,23 @@ input:focus, textarea:focus {
   color: #fff;
 }
 
-.input-group {
-  font-family: Arial, Helvetica, sans-serif;
-  border-bottom: 1px solid rgba(255,255,255, 0.6);
+#side-bar .input-group,
+#side-bar .btn {
+  color: #fff;
+  display: inline-block;
+  line-height: 70px;
+  margin-right: 30px;
+  vertical-align: top;
 }
 
-#side-bar .input-group, #side-bar .btn-line {
-  color: #fff;
-  margin-top: 50px;
+#side-bar .input-group {
+  width: 250px;
+}
+
+#side-bar .input-group label {
+  line-height: 70px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 #side-bar .input-group input {
@@ -97,31 +145,37 @@ input:focus, textarea:focus {
   border: 0;
   font-size: 30px;
   text-align: right;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: MainFont, sans-serif;
+  width: 180px;
+  line-height: 70px;
+}
+
+#side-bar .input-group input:focus {
+  background-color: #222632;
 }
 
 #side-bar .btn {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #fff;
-  cursor: pointer;
+  font-family: MainFont, sans-serif;
   display: inline-block;
-  padding: 10px;
-  color: #21A5BD;
+  width: 100px;
 }
 
-#side-bar .btn-line {
-  text-align: right;
-  margin-right: 40px;
+#side-bar .btn:hover {
+  background-color: #222632;
 }
 
-#range-list {
+#side-bar .btn:active {
+  background-color: #AC70FA;
+}
+
+#container {
   position: fixed;
   top: 0;
-  left: 490px;
-  bottom: 0;
+  left: 0;
+  bottom: 70px;
   right: 0;
   overflow: auto;
-  padding: 20px;
+  padding: 90px 20px;
 }
 
 #range-list .range {
@@ -142,7 +196,7 @@ input:focus, textarea:focus {
   border: 0;
   font-size: 16px;
   text-align: left;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: MainFont, sans-serif;
   margin-bottom: 10px;
   width: 50%;
 }
@@ -171,4 +225,8 @@ input:focus, textarea:focus {
   display: inline-block;
   float: right;
   line-height: 22px;
+}
+
+#settings {
+  display: none;
 }

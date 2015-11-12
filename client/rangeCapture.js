@@ -5,16 +5,19 @@ var ipc = require('ipc');
       $(this).each(function() {
         var lastRange;
         var isCapture = false;
+        var captureLength = 0;
 
         function createItem() {
+          captureLength = $("#capture-numbers").val();
+
           var item = '<div class="item">';
 
-          item += '<div class="toolbar">'
+          item += '<div class="toolbar">';
           item += '<input class="name" value="Range ' + ($("#range-list .item").length + 1) + '"/>';
-          item += '<div class="btn btn-histogram"><i class="fa fa-bar-chart"></i></div>'
+          item += '<div class="btn btn-histogram"><i class="fa fa-bar-chart"></i></div>';
           item += '</div>';
 
-          item += '<div data-count="' + $("#capture-numbers").val() + '" class="range"></div>';
+          item += '<div data-count="' + captureLength + '" class="range"></div>';
 
           item += '<div class="progress"></div>';
 
@@ -41,6 +44,11 @@ var ipc = require('ipc');
         $(this).on("number", function(event, number) {
           if(lastRange) {
             lastRange.trigger('number', [number]);
+            captureLength--;
+
+            if(captureLength <= 0) {
+              lastRange = null;
+            }
           }
         });
       });
@@ -49,5 +57,5 @@ var ipc = require('ipc');
 }( jQuery ));
 
 $(function() {
-  $(".range-capture").rangeCapture();
+  $("#side-bar").rangeCapture();
 });
