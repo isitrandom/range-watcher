@@ -318,3 +318,20 @@ select {
   padding: 20px;
   display: block;
 }
+
+.create-range.list ul {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.create-range.list li::after {
+  content: ',';
+  position: relative;
+  top: 8px;
+  margin-right: 5px;
+}
+
+.create-range.list li {
+  display: inline-block;
+  margin-top: 10px;
+}
