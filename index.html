@@ -8,38 +8,59 @@
   </head>
   <body>
 
-    <div id="container">
-      <div id="range-list">
+  <div id="top-gradient"></div>
 
-      </div>
+  <div id="container">
+    <section id="capture" class="active">
 
-      <div id="create">
-        <select>
-          <oprion>Constant</option>
-          <oprion>List</option>
-          <oprion>Function</option>
-          <oprion>Compute</option>
-        </select>
+    </section>
 
-        generate <input type="number"> numbers
-      </div>
-
-      <div id="settings">
-        <div class="screen">
-            <div class="line1">Pattern 1</div>
-            <div class="line2">0.12345678901234</div>
+    <section id="create">
+      <div class="create-range constant active">
+        <h1><i class="fa fa-check"></i><i class="fa fa-close"></i> Constant range</h1>
+        <div class="options">
+          value: <div class="zero-prepend">0.</div><input type="number" class="value">
         </div>
       </div>
+
+      <div class="create-range">
+        <h1><i class="fa fa-check"></i><i class="fa fa-close"></i> List range</h1>
+        <div class="options">
+
+        </div>
+      </div>
+
+      <div class="create-range">
+        <h1><i class="fa fa-check"></i><i class="fa fa-close"></i> Function range</h1>
+        <div class="options">
+
+        </div>
+      </div>
+
+      <div class="create-range">
+        <h1><i class="fa fa-check"></i><i class="fa fa-close"></i> Computation range</h1>
+        <div class="options">
+
+        </div>
+      </div>
+    </section>
+
+    <section id="settings">
+      <div class="screen">
+          <div class="line1">Pattern 1</div>
+          <div class="line2">0.12345678901234</div>
+      </div>
+    </section>
   </div>
 
   <div id="main-menu">
-    <div class="btn btn-capture active">
+    <div class="btn btn-capture active" data-target="capture">
       Ranges
     </div>
-    <div class="btn btn-create">
+    <div class="btn btn-create" data-target="create">
       Create
     </div>
-    <div class="btn btn-settings">
+    <div class="btn btn-settings" data-target="settings">
       <i class="fa fa-cog"></i>
     </div>
   </div>
@@ -50,12 +71,12 @@
       <label for="capture-numbers">numbers</label>
     </div>
 
-    <div class="btn btn-capture">Capture</div>
+    <div class="btn btn-capture active" id="btn-capture">Capture</div>
+    <div class="btn btn-create" id="btn-create">Create</div>
 
     <div class="range active" data-count="170"></div>
   </div>
 
-  
     <script type="text/javascript">
       window.$ = window.jQuery = require(__dirname+'/node_modules/jquery/dist/jquery.min.js');
     </script>
@@ -63,5 +84,8 @@
     <script src="client/range.js"></script>
     <script src="client/rangeFlow.js"></script>
     <script src="client/rangeCapture.js"></script>
+    <script src="client/mainMenu.js"></script>
+    <script src="client/create.js"></script>
+    <script src="client/createConstant.js"></script>
   </body>
 </html>
