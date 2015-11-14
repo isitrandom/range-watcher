@@ -151,13 +151,6 @@ select {
   vertical-align: top;
 }
 
-#side-bar .screen {
-  font-size: 36px;
-  padding: 20px 10px 10px 10px;
-  border-bottom: 1px solid rgba(255,255,255, 0.6);
-  color: #fff;
-}
-
 #side-bar .input-group,
 #side-bar .btn {
   color: #fff;
@@ -269,10 +262,6 @@ select {
   line-height: 22px;
 }
 
-#settings {
-  display: none;
-}
-
 .create-range .fa-check {
   display: none;
 }
@@ -334,4 +323,18 @@ select {
 .create-range.list li {
   display: inline-block;
   margin-top: 10px;
+}
+
+
+
+
+
+
+#settings .screen {
+  font-size: 36px;
+  padding: 10px 20px;
+  border: 1px solid #322D2B;
+  background-color: #87AB31;
+  color: #333;
+  width: 300px
 }

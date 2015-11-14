@@ -1,6 +1,7 @@
 var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 var ipc = require('ipc');
+var serial = require('./serial');
 
 // Report crashes to our server.
 require('crash-reporter').start();
@@ -35,10 +36,13 @@ app.on('ready', function() {
 
     if(command[0] == "start") {
       neededNumbers = parseInt(command[1]);
+      serial.disableDisplay();
+      serial.readNumber();
     }
 
     if(command[0] == "stop") {
       neededNumbers = 0;
+      serial.enableDisplay();
     }
   });
 
@@ -51,21 +55,8 @@ app.on('ready', function() {
   var set = false;
   //add some random numbers
   mainWindow.webContents.on('did-finish-load', function() {
-    /*for(var i=0; i<100; i++) {
-      mainWindow.webContents.executeJavaScript("addRangeFlow(" + Math.random() + ")");
-    }*/
-
-    if(!set) {
-      setInterval(function() {
-        if (neededNumbers > 0) {
-          mainWindow.webContents.executeJavaScript("addRangeFlow(" + Math.random() + ")");
-          neededNumbers--;
-        }
-      }, 5);
-      set = true;
-    }
+    console.log("ready.");
   });
-
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
@@ -73,5 +64,19 @@ app.on('ready', function() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+  });
+
+
+  serial.setNumberCallback(function(number) {
+    mainWindow.webContents.executeJavaScript("addRangeFlow(" + number + ")");
+    neededNumbers--;
+
+    if(neededNumbers > 0) {
+      setTimeout(serial.readNumber, 3);
+    }
+
+    if(neededNumbers === 0) {
+      serial.enableDisplay();
+    }
   });
 });

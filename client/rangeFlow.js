@@ -3,6 +3,7 @@ var rangeFlowTimer;
 function addRangeFlow(number) {
 
   if(number) {
+    $(".screen .line2").html(number);
     $(".range-capture").trigger("number", [number]);
   } else {
     number = 0;
@@ -11,7 +12,6 @@ function addRangeFlow(number) {
   var percent = number * 100;
 
   $(".range.active").trigger('number', [number]);
-  $(".screen .line2").html(number);
 
   clearTimeout(rangeFlowTimer);
   rangeFlowTimer = setTimeout(function() {
