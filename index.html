@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="style/main.css">
       <link rel="stylesheet" type="text/css" href="style/css/font-awesome.min.css">
   </head>
-  <body>
+  <body class="disconnected">
 
   <div id="top-gradient"></div>
 
@@ -47,9 +47,30 @@
     </section>
 
     <section id="settings">
-      <div class="screen">
-          <div class="line1">Pattern 1</div>
-          <div class="line2">0.12345678901234</div>
+      <div class="device">
+        <div class="device-selector">
+          <select class="device-list"></select>
+
+          <div class="btn btn-refresh"><i class="fa fa-refresh"></i></div>
+          <div class="btn btn-connect">Connect</div>
+          <div class="btn btn-disconnect">Disconnect</div>
+        </div>
+
+        <div class="screen">
+            <div class="line1">
+            </div>
+            <div class="line2">
+            </div>
+        </div>
+
+        <div class="control">
+          <div class="btn btn-b">
+            B
+          </div>
+          <div class="btn btn-a">
+            A
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -89,5 +110,7 @@
     <script src="client/create.js"></script>
     <script src="client/createConstant.js"></script>
     <script src="client/createList.js"></script>
+    <script src="client/settings.js"></script>
+    <script src="client/screen.js"></script>
   </body>
 </html>

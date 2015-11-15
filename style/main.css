@@ -126,13 +126,18 @@ select {
 }
 
 #side-bar {
-  bottom: 0;
+  bottom: -70px;
   left: 0;
   right: 0;
   height: 70px;
   position: fixed;
   background-color: #1A1C25;
   overflow: hidden;
+  transition: bottom 0.3s ease-in;
+}
+
+.connected #side-bar {
+    bottom: 0;
 }
 
 #side-bar .range {
@@ -161,7 +166,7 @@ select {
 }
 
 #side-bar .input-group {
-  width: 250px;
+  width: 181px;
 }
 
 #side-bar .input-group label {
@@ -177,7 +182,7 @@ select {
   font-size: 30px;
   text-align: right;
   font-family: MainFont, sans-serif;
-  width: 180px;
+  width: 120px;
   line-height: 70px;
 }
 
@@ -208,6 +213,16 @@ select {
   top: 0;
   left: 0;
   bottom: 70px;
+  right: 0;
+  overflow: auto;
+  padding: 90px 20px;
+}
+
+.disconnected #container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
   right: 0;
   overflow: auto;
   padding: 90px 20px;
@@ -325,16 +340,79 @@ select {
   margin-top: 10px;
 }
 
+#settings {
+  padding-top: 10px;
+}
 
-
-
-
+#settings .device {
+  width: 523px;
+  background-color: #31302F;
+}
 
 #settings .screen {
-  font-size: 36px;
-  padding: 10px 20px;
-  border: 1px solid #322D2B;
-  background-color: #87AB31;
-  color: #333;
-  width: 300px
+  background: url(img/screen.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 40px 47px;
+  box-sizing: border-box;
+  font-size: 40px;
+  color: #fff;
+  width: 523px;
+  height: 166px;
+  box-sizing: border-box;
+  background-color: #31302F;
+  letter-spacing: -3px;
+  line-height: 44px;
+}
+
+#settings .device-selector {
+  font-size: 0;
+  background-color: #31302F;
+  width: 523px;
+  white-space: nowrap;
+}
+
+#settings .device-selector .device-list,
+#settings .device .btn {
+  font-size: 20px;
+  line-height: 40px;
+  border: 0;
+  padding: 0 20px;
+  color: #fff;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#settings .device-selector .device-list {
+  width: 350px;
+}
+
+#settings .device .control {
+  height: 40px;
+}
+
+#settings .device .btn {
+  display: inline-block;
+}
+
+#settings .device .control .btn {
+  float: right;
+}
+
+#settings .device .btn:hover {
+  background-color: #43CABD;
+}
+
+#settings .device-selector .btn-disconnect {
+  float: right;
+}
+
+.disconnected #settings .device-selector .btn-disconnect {
+  display: none;
+}
+
+.connected #settings .device-selector .btn-refresh,
+.connected #settings .device-selector .btn-connect {
+  display: none;
 }
