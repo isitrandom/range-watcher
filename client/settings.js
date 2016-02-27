@@ -1,4 +1,5 @@
 var ipc = require('ipc');
+var deviceConnected = false;
 
 function info(data) {
   connected(true);
@@ -16,21 +17,29 @@ function connected(isConnected) {
     $(".device-selector .device-list").html("");
     $(".device-selector .device-list").removeAttr("disabled");
 
-    ipc.send('device', 'refresh');
+    if(deviceConnected != isConnected) {
+      ipc.send('device', 'refresh');
 
-    $("#capture").removeClass("active");
-    $("#settings").addClass("active");
-    $(".btn-settings").addClass("active");
+      $("#capture").removeClass("active");
+      $("#settings").addClass("active");
+      $(".btn-settings").addClass("active");
+    }
   } else {
     $(".device-selector .fa").removeClass("fa-spin");
     $(".device-selector .device-list").attr("disabled", "disabled");
 
-    $("#capture").addClass("active");
-    $("#settings").removeClass("active");
-    $(".btn-settings").removeClass("active");
+    if(deviceConnected != isConnected) {
+      $("#capture").addClass("active");
+      $("#settings").removeClass("active");
+      $(".btn-settings").removeClass("active");
+    }
   }
 
-  $(window).resize();
+
+  if(deviceConnected != isConnected) {
+    deviceConnected = isConnected;
+    $(window).resize();
+  }
 }
 
 function listDevices(devices) {
@@ -76,7 +85,6 @@ $(function() {
 
   $(".device .btn-b").click(function() {
     ipc.send('device', 'b');
-    ipc.send('device', 'x');
   });
 
   $(window).resize(function() {
