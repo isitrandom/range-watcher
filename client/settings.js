@@ -14,18 +14,37 @@ function connected(isConnected) {
 
   if(!isConnected) {
     $(".device-selector .device-list").html("");
-    $(".device-selector .btn-refresh");
     $(".device-selector .device-list").removeAttr("disabled");
+
+    ipc.send('device', 'refresh');
+
+    $("#capture").removeClass("active");
+    $("#settings").addClass("active");
+    $(".btn-settings").addClass("active");
   } else {
     $(".device-selector .fa").removeClass("fa-spin");
     $(".device-selector .device-list").attr("disabled", "disabled");
+
+    $("#capture").addClass("active");
+    $("#settings").removeClass("active");
+    $(".btn-settings").removeClass("active");
   }
+
+  $(window).resize();
 }
 
 function listDevices(devices) {
   var val = $(".device-selector .device-list").val();
 
   $(".device-selector .device-list").html("");
+
+  if(devices.length > 0) {
+    $(".list-devices").show();
+    $(".no-device").hide();
+  } else {
+    $(".list-devices").hide();
+    $(".no-device").show();
+  }
 
   devices.forEach(function(device) {
     $(".device-selector .device-list").append('<option value="' + device.comName + '">' + device.name + '</option>');
@@ -37,13 +56,9 @@ function listDevices(devices) {
 }
 
 $(function() {
-  $(".device-selector .btn-refresh").click(function() {
-    ipc.send('device', 'refresh');
-    $(".device-selector .device-list").html("");
-    $(this).find(".fa").addClass("fa-spin");
-  }).click();
+  ipc.send('device', 'refresh');
 
-  $(".device-selector .btn-connect").click(function() {
+  $(".btn-connect").click(function() {
     var val = $(".device-selector .device-list").val();
 
     if(val && val !== "") {
@@ -51,7 +66,7 @@ $(function() {
     }
   });
 
-  $(".device-selector .btn-disconnect").click(function() {
+  $(".btn-disconnect").click(function() {
     ipc.send('device', 'disconnect');
   });
 
@@ -63,5 +78,13 @@ $(function() {
     ipc.send('device', 'b');
   });
 
-  //ipc.send('device', 'info');
+  $(window).resize(function() {
+    var h = $("#settings").height();
+    var top = parseInt($("#container").css("padding-top"));
+
+    var padding = ($(window).height() - h) / 2 - top;
+
+    $("#settings").css("padding-top", padding);
+
+  }).resize();
 });

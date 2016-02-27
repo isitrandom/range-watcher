@@ -3,6 +3,7 @@
   #21A5BD
   #43CABD
   #E8E7E3
+  #dddbd5
   #454544
   #1A1C25
 */
@@ -23,6 +24,15 @@ html, body {
   font-family: MainFont;
   font-size: 14px;
   color: #555;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently */
+
+  cursor: default;
 }
 
 h1 {
@@ -48,16 +58,32 @@ input:focus, textarea:focus, select:focus {
 }
 
 select {
-  font-size: 14px;
+  font-size: 30px;
   font-family: MainFont;
-  border: 1px solid #43CABD;
-  background-color: transparent;
+  background-color: #fff;
 }
 
 .btn {
   cursor: pointer;
   text-align: center;
   font-size: 15px;
+}
+
+.btn-default {
+  background-color: #E8E7E3;
+  display: inline-block;
+  padding: 10px 20px;
+
+  color: #484743;
+  border: 1px solid #fff;
+}
+
+.btn-default:hover {
+  background-color: #dddbd5;
+}
+
+.btn-default:active {
+  background-color: #c6c3b9;
 }
 
 .range {
@@ -266,13 +292,25 @@ select {
   line-height: 22px;
 }
 
-#settings {
-  padding-top: 10px;
-}
-
 #settings .device {
   width: 523px;
   margin: auto;
+
+  position: relative;
+  display: none;
+  text-align: center;
+}
+
+.connected #settings .device {
+  display: block;
+}
+
+#settings .btn-disconnect {
+  margin-top: 40px;
+}
+
+#settings .btn-connect {
+  margin-top: 20px;
 }
 
 #settings .graphic {
@@ -288,11 +326,12 @@ select {
   padding: 40px 47px;
   box-sizing: border-box;
   font-size: 35px;
-  color: #C03;
+  color: #21A5BD;
   letter-spacing: -2.5px;
   line-height: 44px;
-}
 
+  text-align: left;
+}
 
 #settings .graphic .line1 {
   left: 25px;
@@ -307,30 +346,8 @@ select {
 }
 
 #settings .device-selector {
-  font-size: 0;
-  background-color: #31302F;
   width: 523px;
-  white-space: nowrap;
-}
-
-#settings .device-selector .device-list,
-#settings .device .btn {
-  font-size: 20px;
-  line-height: 40px;
-  border: 0;
-  padding: 0 20px;
-  color: #fff;
-  border-radius: 0;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-#settings .device-selector .device-list {
-  width: 350px;
-}
-
-#settings .device .control {
-  height: 40px;
+  margin: auto;
 }
 
 #settings .device .btn {
@@ -338,22 +355,50 @@ select {
 }
 
 #settings .device .control .btn {
-  float: right;
+  position: absolute;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  width: 39px;
+  height: 39px;
+
+  cursor: pointer;
+  background: url(img/btn3.svg);
 }
 
-#settings .device .btn:hover {
-  background-color: #58BFE1;
+#settings .device .control .btn-a {
+  left: 345px;
+  top: 272px;
 }
 
-#settings .device-selector .btn-disconnect {
-  float: right;
+#settings .device .control .btn-b {
+  left: 442px;
+  top: 272px;
 }
 
-.disconnected #settings .device-selector .btn-disconnect {
+#settings .device .control .btn:hover {
+  background: url(img/btn.svg);
+}
+
+#settings .device .control .btn:active {
+  background: url(img/btn2.svg);
+}
+
+.connected .device-selector {
   display: none;
 }
 
-.connected #settings .device-selector .btn-refresh,
-.connected #settings .device-selector .btn-connect {
+#settings .device-selector {
+  text-align: center;
+  font-size: 20px;
+}
+
+#settings .device-selector .icon {
+  font-size: 60px;
+  margin-bottom: 10px;
+}
+
+#settings .list-devices {
   display: none;
 }
