@@ -9,8 +9,31 @@
   <body class="disconnected">
 
   <div id="container">
-    <section id="capture">
+    <section id="histogram">
+      <div class="display">
 
+      </div>
+      <div class="legend">
+        <div class="item">[0 : 0,1)</div>
+        <div class="item">[0,1 : 0,2)</div>
+        <div class="item">[0,2 : 0,3)</div>
+        <div class="item">[0,3 : 0,4)</div>
+        <div class="item">[0,4 : 0,5)</div>
+        <div class="item">[0,5 : 0,6)</div>
+        <div class="item">[0,6 : 0,7)</div>
+        <div class="item">[0,7 : 0,8)</div>
+        <div class="item">[0,8 : 0,9)</div>
+        <div class="item">[0,9 : 1)</div>
+        <div class="item">1</div>
+      </div>
+    </section>
+    <section id="capture">
+      <div class="no-range-message">
+        <i class="fa fa-info-circle icon"></i><br/>
+        There is no captured range. <br/>
+        Select a pattern on your device and press capture to <br/>
+        add your first range.
+      </div>
     </section>
 
     <section id="settings" class="active">
@@ -48,6 +71,8 @@
   </div>
 
   <div id="main-menu">
+    <div class="btn btn-back"><i class="fa fa-angle-left"></i><div class="text">Back</div></div>
+
     <div class="btn btn-settings active">
       <i class="fa fa-usb"></i>
     </div>
@@ -69,6 +94,8 @@
     </script>
 
     <script src="client/range.js"></script>
+    <script src="client/capture.js"></script>
+    <script src="client/histogram.js"></script>
     <script src="client/rangeFlow.js"></script>
     <script src="client/rangeCapture.js"></script>
     <script src="client/mainMenu.js"></script>

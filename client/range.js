@@ -42,6 +42,14 @@ var rangeData = [];
         var lastDraw = new Date();
         var name = rangeData.length;
 
+        element.parent().find(".btn-histogram").click(function() {
+          element.trigger("histogram", [rangeData[name]]);
+        });
+
+        element.parent().find(".btn-details").click(function() {
+          element.trigger("details", [rangeData[name]]);
+        });
+
         rangeData[name] = [];
 
         var totalNumers = parseInt($(this).attr("data-count"));

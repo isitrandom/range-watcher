@@ -1,11 +1,14 @@
 var ipc = require('ipc');
 
 function createRange(captureLength, name) {
+  $(".no-range-message").remove();
+
   var item = '<div class="item">';
 
   item += '<div class="toolbar">';
   item += '<input class="name" value="' + ($("#capture .item").length + 1) + '.' + name + '"/>';
   item += '<div class="btn btn-histogram"><i class="fa fa-bar-chart"></i></div>';
+  item += '<div class="btn btn-details"><i class="fa fa-search"></i></div>';
   item += '</div>';
 
   item += '<div data-count="' + captureLength + '" class="range"></div>';
@@ -31,6 +34,15 @@ function createRange(captureLength, name) {
           captureLength = $("#capture-numbers").val();
 
           var range = createRange(captureLength, "Capture");
+
+          range.on("histogram", function(ev, numbers) {
+            showHistogram(numbers);
+          });
+
+          range.on("details", function(ev, numbers) {
+            showDetails(numbers);
+          });
+
           range.addClass("active");
         });
       });

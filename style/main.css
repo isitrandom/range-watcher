@@ -290,6 +290,11 @@ select {
   display: inline-block;
   float: right;
   line-height: 22px;
+  margin-left: 10px;
+}
+
+#capture .item .toolbar .btn:hover {
+  color: #21A5BD;
 }
 
 #settings .device {
@@ -394,11 +399,77 @@ select {
   font-size: 20px;
 }
 
-#settings .device-selector .icon {
+#container .icon {
   font-size: 60px;
   margin-bottom: 10px;
 }
 
 #settings .list-devices {
   display: none;
+}
+
+.no-range-message {
+  font-size: 20px;
+  text-align: center;
+}
+
+#histogram,
+#histogram .display {
+  width: 100%;
+  height: calc(100% - 50px);
+  font-size: 0;
+}
+
+
+#histogram .display {
+  position: relative;
+}
+
+#histogram .bar {
+  display: inline-block;
+  font-size: 0;
+  bottom: 0;
+  position: relative;
+  height: 100%;
+}
+
+#histogram .bar .content {
+  display: inline-block;
+  width: 90%;
+  background-color: #21A5BD;
+  bottom: 0;
+  vertical-align: bottom;
+}
+
+#histogram .bar .count {
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  width: 90%;
+}
+
+#histogram .legend .item {
+  text-align: center;
+  width: 9.09091%;
+  display: inline-block;
+  height: 50px;
+  padding-right: 1%;
+  font-size: 14px;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.btn-back {
+  position: absolute;
+  left: 10px;
+
+  display: none;
+}
+
+.btn-back .text {
+  position: relative;
+  left: -10px;
+  top: -3px;
+  display: inline-block;
+  font-size: 18px;
 }
