@@ -60,11 +60,6 @@ select {
   font-size: 15px;
 }
 
-.screen {
-  font-family: screen;
-  line-height: 1.2em;
-}
-
 .range {
   white-space: nowrap;
   color: #fff;
@@ -82,11 +77,6 @@ select {
   height: 50px;
   position: fixed;
   padding: 0 20px;
-
-  background: -webkit-linear-gradient(top, #fbfafa 0%,#f6f4f5 50%,#fbfafa 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #fbfafa 0%,#f6f4f5 50%,#fbfafa 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
-  border-bottom: 1px solid #E4E4E4;
 }
 
 #main-menu .btn {
@@ -276,101 +266,44 @@ select {
   line-height: 22px;
 }
 
-.create-range .fa-check {
-  display: none;
-}
-
-.create-range.active .fa-close {
-  display: none;
-}
-
-.create-range.active .fa-check {
-  display: inline-block;
-}
-
-.create-range  h1 {
-  cursor: pointer;
-}
-
-.create-range.active h1 {
-  color: #58BFE1;
-  border-bottom: 1px solid #dedede;
-}
-
-.create-range .options {
-  display: none;
-  font-size: 20px;
-}
-
-.create-range .options input {
-  border: 0;
-  border-bottom: 1px solid #58BFE1;
-  background-color: transparent;
-  font-size: 20px;
-  width: 80px;
-}
-
-.create-range .options .zero-prepend {
-  border-bottom: 1px solid #58BFE1;
-  font-size: 20px;
-  display: inline-block;
-  line-height: 1.3;
-}
-
-.create-range.active .options {
-  padding: 20px;
-  display: block;
-}
-
-.create-range.list ul {
-  margin: 10px 0 0 0;
-  padding: 0;
-}
-
-.create-range.list li::after {
-  content: ',';
-  position: relative;
-  top: 8px;
-  margin-right: 5px;
-}
-
-.create-range.list li {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.create-range .options input.function {
-  width: 60%;
-}
-
-
-
-
-
-
 #settings {
   padding-top: 10px;
 }
 
 #settings .device {
   width: 523px;
-  background-color: #31302F;
+  margin: auto;
 }
 
-#settings .screen {
-  background: url(img/screen.svg);
+#settings .graphic {
+  font-family: screen;
+  line-height: 1.2em;
+
+  background: url(img/device.svg);
   background-repeat: no-repeat;
   background-size: contain;
+  width: 523px;
+  height: 345px;
+
   padding: 40px 47px;
   box-sizing: border-box;
-  font-size: 40px;
-  color: #fff;
-  width: 523px;
-  height: 166px;
-  box-sizing: border-box;
-  background-color: #31302F;
-  letter-spacing: -3px;
+  font-size: 35px;
+  color: #C03;
+  letter-spacing: -2.5px;
   line-height: 44px;
+}
+
+
+#settings .graphic .line1 {
+  left: 25px;
+  top: 35px;
+  position: relative;
+}
+
+#settings .graphic .line2 {
+  left: 25px;
+  top: 27px;
+  position: relative;
 }
 
 #settings .device-selector {

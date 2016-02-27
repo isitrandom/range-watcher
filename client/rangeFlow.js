@@ -9,7 +9,7 @@ function addRangeFlow(numbers) {
       list.push(parseFloat(numbers[i]));
     }
 
-    $(".screen .line2").html(list[0]);
+    $(".device .line2").html(list[list.length - 1]);
   }
 
   $(".range.active, .range.forever").trigger("numbers", [list]);

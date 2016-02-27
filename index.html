@@ -9,21 +9,14 @@
   <body class="disconnected">
 
   <div id="container">
-    <section id="capture" class="active">
+    <section id="capture">
 
     </section>
 
-    <section id="settings">
+    <section id="settings" class="active">
       <div class="device">
-        <div class="device-selector">
-          <select class="device-list"></select>
 
-          <div class="btn btn-refresh"><i class="fa fa-refresh"></i></div>
-          <div class="btn btn-connect">Connect</div>
-          <div class="btn btn-disconnect">Disconnect</div>
-        </div>
-
-        <div class="screen">
+        <div class="graphic">
             <div class="line1">
             </div>
             <div class="line2">
@@ -38,23 +31,27 @@
             A
           </div>
         </div>
+
+
+        <div class="device-selector">
+          <select class="device-list"></select>
+
+          <div class="btn btn-refresh"><i class="fa fa-refresh"></i></div>
+          <div class="btn btn-connect">Connect</div>
+          <div class="btn btn-disconnect">Disconnect</div>
+        </div>
       </div>
     </section>
   </div>
 
   <div id="main-menu">
-    <div class="btn btn-capture active" data-target="capture">
-      Ranges
-    </div>
-
-    <div class="btn btn-settings" data-target="settings">
-      <i class="fa fa-cog"></i>
+    <div class="btn btn-settings active">
+      <i class="fa fa-usb"></i>
     </div>
   </div>
 
   <div id="side-bar">
     <div class="btn btn-capture active" id="btn-capture">Capture</div>
-    <div class="btn btn-create" id="btn-create">Create</div>
 
     <div class="input-group">
       <input value="1000" type="number" id="capture-numbers">
@@ -72,10 +69,6 @@
     <script src="client/rangeFlow.js"></script>
     <script src="client/rangeCapture.js"></script>
     <script src="client/mainMenu.js"></script>
-    <script src="client/create.js"></script>
-    <script src="client/createConstant.js"></script>
-    <script src="client/createList.js"></script>
-    <script src="client/createFunction.js"></script>
     <script src="client/settings.js"></script>
   </body>
 </html>

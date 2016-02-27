@@ -5,7 +5,7 @@ function info(data) {
 
   $(".device-selector .device-list").append('<option>'+data.name+'</option>');
   $(".device-selector .device-list").val(data.name);
-  $(".screen .line1").html("Pattern " + (data.pattern + 1));
+  $(".graphic .line1").html("Pattern " + (data.pattern + 1));
 }
 
 function connected(isConnected) {

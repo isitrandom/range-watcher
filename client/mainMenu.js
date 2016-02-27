@@ -1,20 +1,15 @@
 $(function() {
-  $("#main-menu .btn").click(function() {
-    var target = $(this).attr("data-target");
+  $("#main-menu .btn-settings").click(function() {
+    $(this).toggleClass("active");
 
-    $("section, #main-menu .btn, #side-bar .btn").removeClass("active");
-    $("#" + target).addClass("active");
-    $("#btn-" + target).addClass("active");
-
-    if(target === "settings") {
-      $("#side-bar .input-group").css("display", "none");
-      $("#side-bar .range").css("left", 0);
-      $("#side-bar .range").css("width", "auto");
+    if($(this).is(".active")) {
+      $("#settings").addClass("active");
+      $("#capture").removeClass("active");
     } else {
-      $("#side-bar .input-group, #side-bar .range").removeAttr("style");
+      $("#settings").removeClass("active");
+      $("#capture").addClass("active");
     }
 
-    $(this).addClass("active");
     $(window).resize();
   });
 });
