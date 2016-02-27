@@ -76,6 +76,7 @@ $(function() {
 
   $(".device .btn-b").click(function() {
     ipc.send('device', 'b');
+    ipc.send('device', 'x');
   });
 
   $(window).resize(function() {
