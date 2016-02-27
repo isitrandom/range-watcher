@@ -1,5 +1,6 @@
-(function( $ ) {
+var rangeData = [];
 
+(function( $ ) {
   function drawRange(list, ctx) {
     var width = ctx.canvas.width;
     var height = ctx.canvas.height;
@@ -39,16 +40,18 @@
         var shouldUpdateProgress = true;
         var element = $(this);
         var lastDraw = new Date();
-        var list = [];
+        var name = rangeData.length;
 
-        var totalNumers = $(this).attr("data-count");
+        rangeData[name] = [];
+
+        var totalNumers = parseInt($(this).attr("data-count"));
         var readNumers = 0;
         var width;
         var height;
         var ratio = window.devicePixelRatio;
 
         for(var i = 0; i<totalNumers; i++) {
-          list.push(0);
+          rangeData[name].push(0);
         }
 
         $(this).html('<canvas></canvas>');
@@ -56,10 +59,11 @@
         var canvas = $(this).find("canvas");
         var ctx = canvas[0].getContext("2d");
 
-        $(this).on("number", function(event, number) {
-          list.push(parseFloat(number));
-          list.shift();
-          readNumers++;
+        $(this).on("numbers", function(event, numbers) {
+          rangeData[name] = rangeData[name].concat(numbers);
+          rangeData[name].splice(0, numbers.length);
+
+          readNumers += numbers.length;
           draw();
 
           if(shouldUpdateProgress) {
@@ -72,12 +76,16 @@
         });
 
         function updateProgress() {
-          var percent = (readNumers/totalNumers)*100;
+          totalNumers = parseInt(element.attr("data-count"));
+
+          var percent = (readNumers / totalNumers)*100;
 
           element.parent().find(".progress").css("width", percent + "%");
+
           if(percent >= 100) {
             shouldUpdateProgress = false;
             element.parent().addClass("read-done");
+            element.removeClass("active");
           }
         }
 
@@ -86,7 +94,7 @@
 
           if(now - lastDraw > 140) {
             setCanvasSize();
-            drawRange(list, ctx);
+            drawRange(rangeData[name], ctx);
             lastDraw = now;
           }
         }

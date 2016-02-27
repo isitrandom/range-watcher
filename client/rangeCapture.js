@@ -13,9 +13,9 @@ function createRange(captureLength, name) {
   item += '<div class="progress"></div>';
   item += '</div>';
 
-  $("#capture").append(item);
+  $("#capture").prepend(item);
 
-  var rangeElem = $("#capture .range:last");
+  var rangeElem = $("#capture .range:first");
   rangeElem.range();
 
   return rangeElem;
@@ -24,32 +24,14 @@ function createRange(captureLength, name) {
 (function( $ ) {
   $.fn.rangeCapture = function() {
       $(this).each(function() {
-        var lastRange;
-        var isCapture = false;
         var captureLength = 0;
 
         $(this).find(".btn-capture").on("click", function() {
-          ipc.send('device', isCapture ? 'stop' : 'start:' + $("#capture-numbers").val());
-          isCapture = !isCapture;
+          ipc.send('device', 'start:' + $("#capture-numbers").val());
+          captureLength = $("#capture-numbers").val();
 
-          if(isCapture) {
-            captureLength = $("#capture-numbers").val();
-            lastRange = createRange(captureLength, "Capture");
-          } else {
-            lastRange = null;
-          }
-        });
-
-        $(this).on("number", function(event, number) {
-          if(lastRange) {
-            lastRange.trigger('number', [number]);
-            captureLength--;
-
-            if(captureLength <= 0) {
-              lastRange = null;
-              isCapture = false;
-            }
-          }
+          var range = createRange(captureLength, "Capture");
+          range.addClass("active");
         });
       });
       return this;

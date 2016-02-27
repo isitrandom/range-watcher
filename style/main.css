@@ -339,6 +339,15 @@ select {
   margin-top: 10px;
 }
 
+.create-range .options input.function {
+  width: 60%;
+}
+
+
+
+
+
+
 #settings {
   padding-top: 10px;
 }

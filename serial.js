@@ -7,7 +7,14 @@ var onConnect = function() {};
 var onDisconnect = function() {};
 var onInfo = function() {};
 
+var stackNumbers = [];
+var oldSendTime = new Date();
+
 var listDevicesTimeout;
+
+setInterval(function() {
+  flushNumbers();
+}, 15);
 
 function setOnConnect(callback) {
   onConnect = callback;
@@ -22,9 +29,11 @@ function setOnInfo(callback) {
 }
 
 function disconnect() {
-  serialPort.close(function() {
-    onDisconnect();
-  });
+  if(serialPort && serialPort.isOpen()) {
+    serialPort.close(function() {
+      onDisconnect();
+    });
+  }
 }
 
 function connect(path) {
@@ -36,7 +45,6 @@ function connect(path) {
 
   serialPort.open(function (error) {
     onConnect(error);
-    console.log("open", error);
 
     if(!error) {
       clearTimeout(listDevicesTimeout);
@@ -45,17 +53,15 @@ function connect(path) {
 
   serialPort.on('data', function(data) {
     data = data.toString();
-    console.log("<-", data);
 
     var prefix = data.substring(0, 2);
 
     if(prefix == "0." || prefix == "1.") {
-      numberCallback(parseFloat(data));
+      stackNumbers.push(parseFloat(data));
       return;
     }
 
     data = data.split(":");
-    console.log(data);
 
     if(data[0] === "info") {
       var info = {
@@ -69,6 +75,16 @@ function connect(path) {
   });
 }
 
+function flushNumbers() {
+  var time = new Date();
+
+  if(stackNumbers.length > 0) {
+    numberCallback(stackNumbers);
+    stackNumbers = [];
+    oldSendTime = time;
+  }
+}
+
 function setNumberCallback(func) {
   numberCallback = func;
 }
@@ -76,6 +92,11 @@ function setNumberCallback(func) {
 function readNumber() {
   console.log("->b");
   serialPort.write("b");
+}
+
+function readNumbers(numbers) {
+  console.log("->t:" + numbers);
+  serialPort.write("t:" + numbers + "\n");
 }
 
 function nextGenerator() {
@@ -96,9 +117,7 @@ function disableDisplay() {
 function info() {
   if(serialPort) {
     console.log("->x");
-    serialPort.write("x", function() {
-      console.log(arguments);
-    });
+    serialPort.write("x");
   }
 }
 
@@ -150,10 +169,11 @@ function listDevices(callback) {
 function getDeviceOptions(path, callback) {
   tmp = new SerialPort(path, {
     baudrate: 9600,
-    parser: serialport.parsers.readline("\r\n"),
-    onDisconnect: function() {
-      callback({name: "unknown", color: ""});
-    }
+    parser: serialport.parsers.readline("\r\n")
+  });
+
+  tmp.on('error', function(err) {
+    callback({name: "unknown", color: ""});
   });
 
   tmp.on('data', function(data) {
@@ -167,8 +187,12 @@ function getDeviceOptions(path, callback) {
     tmp.close();
   });
 
-  tmp.open(function (error) {
-    tmp.write("x");
+  tmp.on("open", function (error) {
+    if(!error) {
+      tmp.write("x");
+    } else {
+      callback({name: "unknown", color: ""});
+    }
   });
 }
 
@@ -181,6 +205,7 @@ module.exports.disableDisplay = disableDisplay;
 
 module.exports.nextGenerator = nextGenerator;
 module.exports.readNumber = readNumber;
+module.exports.readNumbers = readNumbers;
 module.exports.setNumberCallback = setNumberCallback;
 
 module.exports.listDevices = listDevices;

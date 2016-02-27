@@ -1,17 +1,18 @@
 var rangeFlowTimer;
 
-function addRangeFlow(number) {
+function addRangeFlow(numbers) {
 
-  if(number) {
-    $(".screen .line2").html(number);
-    $(".range-capture").trigger("number", [number]);
-  } else {
-    number = 0;
+  var list = [0];
+
+  if(numbers && numbers.length && numbers.length > 0) {
+    for(var i in numbers) {
+      list.push(parseFloat(numbers[i]));
+    }
+
+    $(".screen .line2").html(list[0]);
   }
 
-  var percent = number * 100;
-
-  $(".range.active").trigger('number', [number]);
+  $(".range.active, .range.forever").trigger("numbers", [list]);
 
   clearTimeout(rangeFlowTimer);
   rangeFlowTimer = setTimeout(function() {

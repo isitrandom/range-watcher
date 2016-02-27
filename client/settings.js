@@ -41,7 +41,7 @@ $(function() {
     ipc.send('device', 'refresh');
     $(".device-selector .device-list").html("");
     $(this).find(".fa").addClass("fa-spin");
-  });
+  }).click();
 
   $(".device-selector .btn-connect").click(function() {
     var val = $(".device-selector .device-list").val();
@@ -63,5 +63,5 @@ $(function() {
     ipc.send('device', 'b');
   });
 
-  ipc.send('device', 'info');
+  //ipc.send('device', 'info');
 });

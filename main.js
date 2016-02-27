@@ -24,8 +24,6 @@ var neededNumbers = 0;
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
-  //serial.listDevices();
-
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600,
       'web-preferences': {
@@ -38,8 +36,7 @@ app.on('ready', function() {
 
     if(command[0] == "start") {
       neededNumbers = parseInt(command[1]);
-      serial.disableDisplay();
-      serial.readNumber();
+      serial.readNumbers(neededNumbers);
     }
 
     if(command[0] == "stop") {
@@ -59,7 +56,7 @@ app.on('ready', function() {
     }
 
     if(command[0] == "disconnect") {
-      serial.disconnect(command[1]);
+      serial.disconnect();
     }
 
     if(command[0] == "info") {
@@ -98,6 +95,7 @@ app.on('ready', function() {
   //add some random numbers
   mainWindow.webContents.on('did-finish-load', function() {
     console.log("ready.");
+    serial.disconnect();
   });
 
   // Emitted when the window is closed.
@@ -106,18 +104,11 @@ app.on('ready', function() {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null;
+    serial.disconnect();
   });
 
-  serial.setNumberCallback(function(number) {
-    mainWindow.webContents.executeJavaScript("addRangeFlow(" + number + ")");
-    neededNumbers--;
 
-    if(neededNumbers > 0) {
-      setTimeout(serial.readNumber, 3);
-    }
-
-    if(neededNumbers === 0) {
-      serial.enableDisplay();
-    }
+  serial.setNumberCallback(function(numbers) {
+    mainWindow.webContents.executeJavaScript("addRangeFlow(" + JSON.stringify(numbers) + ")");
   });
 });
