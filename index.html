@@ -27,7 +27,20 @@
         <div class="item">1</div>
       </div>
     </section>
+
     <section id="capture">
+      <div id="capture-bar">
+        <div class="input-group">
+          Capture
+          <input value="1000" max="32767" min="0" type="number" id="capture-numbers">
+          <label for="capture-numbers">numbers</label>
+
+          <div class="btn btn-capture active btn-default" id="btn-capture">Start</div>
+        </div>
+        <div class="last-number"></div>
+        <div class="range forever" data-count="1000"></div>
+      </div>
+
       <div class="no-range-message">
         <i class="fa fa-info-circle icon"></i><br/>
         There is no captured range. <br/>
@@ -70,24 +83,13 @@
     </section>
   </div>
 
-  <div id="main-menu">
-    <div class="btn btn-back"><i class="fa fa-angle-left"></i><div class="text">Back</div></div>
+    <div id="main-menu">
+      <div class="btn btn-back"><i class="fa fa-angle-left"></i><div class="text">Back</div></div>
 
-    <div class="btn btn-settings active">
-      <i class="fa fa-usb"></i>
+      <div class="btn btn-settings active">
+        <i class="fa fa-usb"></i>
+      </div>
     </div>
-  </div>
-
-  <div id="side-bar">
-    <div class="btn btn-capture active" id="btn-capture">Capture</div>
-
-    <div class="input-group">
-      <input value="1000" type="number" id="capture-numbers">
-      <label for="capture-numbers">numbers</label>
-    </div>
-
-    <div class="range forever" data-count="1000"></div>
-  </div>
 
     <script type="text/javascript">
       window.$ = window.jQuery = require(__dirname+'/node_modules/jquery/dist/jquery.min.js');

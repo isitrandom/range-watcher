@@ -16,9 +16,9 @@ function createRange(captureLength, name) {
   item += '<div class="progress"></div>';
   item += '</div>';
 
-  $("#capture").prepend(item);
+  $("#capture-bar").after(item);
 
-  var rangeElem = $("#capture .range:first");
+  var rangeElem = $("#capture-bar").next().find(".range:first");
   rangeElem.range();
 
   return rangeElem;
@@ -51,5 +51,5 @@ function createRange(captureLength, name) {
 }( jQuery ));
 
 $(function() {
-  $("#side-bar").rangeCapture();
+  $("#capture-bar").rangeCapture();
 });

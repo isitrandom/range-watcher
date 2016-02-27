@@ -139,98 +139,63 @@ select {
   top: 0;
 }
 
-#side-bar {
-  bottom: -70px;
-  left: 0;
-  right: 0;
-  height: 70px;
-  position: fixed;
-  background-color: #fff;
-  overflow: hidden;
-  transition: bottom 0.3s ease-in;
-
-  border-top: 1px solid #E4E4E4;
+.connected #capture-bar {
+    display: block;
 }
 
-.connected #side-bar {
-    bottom: 0;
-}
-
-#side-bar .range {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 50px;
-  left: 320px;
-  line-height: 100px;
-  padding: 10px 0;
-  color: #58BFE1;
-}
-
-#side-bar .range canvas {
-  vertical-align: top;
-}
-
-#side-bar .input-group,
-#side-bar .btn {
-  color: #58BFE1;
-  display: inline-block;
-  line-height: 70px;
-  vertical-align: top;
-}
-
-#side-bar .input-group {
-  width: 181px;
-}
-
-#side-bar .input-group label {
-  line-height: 70px;
-  display: inline-block;
-  vertical-align: top;
-}
-
-#side-bar .input-group input {
-  color: #58BFE1;
-  background-color: transparent;
-  border: 0;
-  font-size: 30px;
-  text-align: right;
-  font-family: MainFont, sans-serif;
-  width: 120px;
-  line-height: 70px;
-}
-
-#side-bar .input-group input:focus {
-  background-color: #f8f8f8;
-}
-
-#side-bar .btn {
-  font-family: MainFont, sans-serif;
-  width: 100px;
+#capture-bar {
+  padding-top: 90px;
+  font-size: 0;
   display: none;
+  margin-bottom: 90px;
+  background-color: #fff;
+  border-bottom: 1px solid #21A5BD;
 }
 
-#side-bar .btn.active {
+#capture-bar .last-number,
+#capture-bar .range {
   display: inline-block;
+  vertical-align: bottom;
+  padding: 10px 0;
 }
 
-#side-bar .btn:hover {
-  background-color: #eaeaea;
+#capture-bar .last-number {
+  width: 210px;
+  font-size: 30px;
+  padding-right: 10px;
+  line-height: 50px;
+  text-align: right;
+
+  font-family: screen;
 }
 
-#side-bar .btn:active {
-  background-color: #58BFE1;
-  color: #fff;
+#capture-bar .input-group {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#capture-bar .input-group input {
+  font-size: 14px;
+  width: 80px;
+}
+
+#capture #capture-bar .range {
+  width: calc(100% - 220px);
+  color: #484743;
+}
+
+#btn-capture {
+
 }
 
 #container {
   position: fixed;
   top: 0;
   left: 0;
-  bottom: 70px;
+  bottom: 0;
   right: 0;
   overflow: auto;
-  padding: 90px 20px;
 }
 
 .disconnected #container {
@@ -411,6 +376,7 @@ select {
 .no-range-message {
   font-size: 20px;
   text-align: center;
+  padding-top: 50px;
 }
 
 #histogram,
@@ -418,6 +384,7 @@ select {
   width: 100%;
   height: calc(100% - 50px);
   font-size: 0;
+  margin-top: 60px;
 }
 
 
@@ -472,4 +439,8 @@ select {
   top: -3px;
   display: inline-block;
   font-size: 18px;
+}
+
+.toolbar {
+  padding: 0 30px;
 }
